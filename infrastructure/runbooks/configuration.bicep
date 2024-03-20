@@ -18,6 +18,20 @@ var environmentConfigurationMap = {
       virtualNetworkName: 'vnet-sandbox-01-eastus2-01' // Name of the VNet
       subnetName: 'snet-sandbox-01-privateendpoint-eastus2-01'
     }
+    managementGroupName: 'ucanr' 
+    tenantId: '95933331-9c40-4ebf-9199-cd4c72f03a84'
+    logAnalyticsWorkspace: {
+      subscriptionId: '58092e4c-ca70-46e0-b4e6-99bb5c99e2e1' // Management subscription
+      resoureGroupName: 'ucanr-mgmt'
+      workspaceName: 'ucanr-law'
+    }
+    emailReceivers:[
+      {
+        name: 'Test Email'
+        emailAddress: 'nyedlapalli@ucanr.org'
+        useCommonAlertSchema: false
+      }
+    ]
   }
 }
 
