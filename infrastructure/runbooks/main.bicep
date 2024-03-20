@@ -48,3 +48,28 @@ module automationAccountModule './automation-account.bicep' = {
     smtppassword: smtppassword
   }    
 }
+
+@description('Module to create actions resources')
+module actionGroupModule 'actionGroup.bicep' = {
+  name: 'ag-${workload}-${environment}-${location}-01'
+  params: {
+    actionGroupName: 'ag-${workload}-${environment}-${location}-01'
+    emailReceivers: config.emailReceivers
+  }
+}
+
+@description('Module to create alert resources')
+module alertRuleModule 'alertRule.bicep' = {
+  name: 'ar-${workload}-${environment}-${location}-01'
+  params: {
+    alertRuleName: 'ar-${workload}-${environment}-${location}-01'
+    location: location
+    managementSubscriptionId: config.logAnalyticsWorkspace.subscriptionId
+    logAnalyticsWorkspaceRg: config.logAnalyticsWorkspace.resoureGroupName
+    logAnalyticsWorkspaceName: config.logAnalyticsWorkspace.workspaceName
+    actionGroupId: actionGroupModule.outputs.actionGroupId
+  }
+  dependsOn: [
+    actionGroupModule
+  ]
+}
