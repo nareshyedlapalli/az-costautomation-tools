@@ -41,7 +41,7 @@ resource alertRule 'Microsoft.Insights/scheduledQueryRules@2022-08-01-preview' =
           timeAggregation: 'Count'
           dimensions: [
             {
-              name: 'Resource_Id'
+              name: '_ResourceId'
               operator: 'Include'
               values: [
                 '*'
